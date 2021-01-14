@@ -3,73 +3,102 @@ import hashlib
 # Algoritmo para generar la clave segura
 from hashlib import sha256
 # Biblioteca con los algoritmos de criptografía: algoritmo AES
-from Crypto.Cipher import AES
+from AESCipher import AESCipher
 # Biblioteca que contiene al objeto Polinomio
 from Polinomio import Polinomio
 # Biblioteca para generar números aleatorios
 import random
+# Biblioteca para trabajar con el campo Zp con p primo
+from CampoZP import Zp
 '''
 Clase que sigue el esquema Shamir Secret Sharing para encriptar un mensaje
 '''
 class Encriptar_Shamir:
-    '''
-    Método para generar la clave segura con base en la contraseña inicial que el usuario ingresa
-    @param: clave_usuario (clave que proporciona el usuario)
-    @return: clave segura, resultado de aplicar el algoritmo SHA-256 sobre la clave inicial.
-    '''
-    @staticmethod
-    def generar_clave_segura(clave_usuario):
-        return sha256(clave_usuario.encode()).hexdigest()
 
-    '''
-    Método para encriptar un mensaje con base a una clave segura utilizando el algoritmo AES.
-    @param: Clave segura
-    @param: Mensaje
-    @return: Criptograma
-    '''
-    @staticmethod
-    def encriptar_mensaje(clave_segura, mensaje):
-        key = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for x in range(32))
-        iv = ''.join([chr(random.randint(0, 0xFF)) for i in range(16)])
-        aes = AES.new(key, AES.MODE_CBC, iv)
-        encd = aes.encrypt(mensaje)
-        print(encd)
+    # Constructor de la clase
+    def __init__(self):
+
+        # Número primo que definirá nuestro campo Zp
+
+        self.campo_zp_primo = 208351617316091241234326746312124448251235562226470491514186331217050270460481
+
+        # Creamos una instancia de un campo Zp para operar el polinomio
+
+        self.zp = Zp(self.campo_zp_primo)
+
     '''
     Método para generar un polonomio aleatoriamente en un campo Zp
     @param: Término independiente del polinomio
     @param: Grado del polinomio
     @return: Polinomio generado
     '''
-    @staticmethod
-    def generar_polinomio_zp(termino_indep, grado_pol):
-        # Número primo que definirá nuestro campo Zp
-        campo_zp_primo = 208351617316091241234326746312124448251235562226470491514186331217050270460481
-        # Tenemos que generar un polonomio aleatorio con grado_pol coeficientes resultantes de Zp con el primo
+    def generar_polinomio_zp(self,termino_indep, grado):
+
+        coeficientes = []
+
+        # Agregamos una clave de sha256 como simulacro
+
+        coeficientes.append(termino_indep)
+
+        for i in range(0, grado):
+
+            coeficientes.append(self.zp.random_zp(grado))
+
+        # Definimos el polinomio
+
+        pol = Polinomio(grado, True, coeficientes)
 
         # Regresamos el polinomio
+
+        return pol
     '''
     Método para encriptar basado en el esquema Shamir Secret Sharing
     @param: Mensaje a encriptar
     @param: Número de personas en total
     @param: Número mínimo de personas para desencriptar
+    @param: Llave del usuario
+    @return: El criptograma y las respectivas shares
     '''
-    def encriptar(mensaje, N, K):
-        # Solicitamos la contraseña del usuario
-        clave_usuario = input("Ingresa la contraseñ: ")
+    def encriptar(self,mensaje, N, K, llave):
+
+        # Creamos un objeto de tipo AESCipher para poder utilizar los algoritmos de cifrado
+
+        aes = AESCipher()
         # Generamos la contraseña clave_segura
-        clave_segura = self.generar_clave_segura(clave_usuario)
+
+        clave_segura = aes.sha256(llave)
         # Generamos el polinomio
-        polinomio = generar_polinomio_zp(clave_segura, K)
+
+        polinomio = self.generar_polinomio_zp(clave_segura, K)
         # Evaluamos en los N puntos
 
+        diccionario_evaluaciones = {}
+
+        for i in range(0, N):
+
+            x = self.zp.random_zp(self.campo_zp_primo)
+
+            while(x in diccionario_evaluaciones):
+
+                x = self.zp.random_zp(self.campo_zp_primo)
+
+            y = polinomio.eval(x)
+
+            diccionario_evaluaciones[x] = y
+
         # Encriptamos el menaje
-        criptograma = self.encriptar_mensaje(clave_segura, mensaje)
+
+        criptograma = aes.encriptar(mensaje, clave_segura)
+
         # Regresamos el criptograma y los puntos (evaluacioness)
 
-        return (criptograma)
+        return (criptograma, diccionario_evaluaciones)
 
 
+mensaje = "Nos la va  apelar el siguiente semestre!"
 
-llave_segura = Encriptar.generar_clave_segura("confidential data")
-print(llave_segura)
-print(Encriptar.encriptar_mensaje(llave_segura, "HOla como estás?, Esto es confidential"))
+llave = "12345hola"
+
+enc = Encriptar_Shamir()
+
+enc.encriptar(mensaje, 10, 7, llave)

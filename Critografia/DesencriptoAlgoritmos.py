@@ -45,4 +45,4 @@ class Desencriptar_Shamir:
     def desencriptar(mensaje, x_i, y_i):
         clave_segura = self.generar_polinomio(x_i, y_i)
         mensaje = self.desencriptar_mensaje(clave_segura, mensaje)
-        return mensaje 
+        return mensaje
