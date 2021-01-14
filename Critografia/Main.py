@@ -8,6 +8,8 @@ from DesencriptoAlgoritmos import Desencriptar_Shamir
 from Archivos import Archivo
 # Biblioteca para solicitar la contraseña sin tener echo
 import getpass
+# Biblioteca para ilustrar
+from Mensajes import Mensaje
 '''
     Para encriptar:
 
@@ -62,6 +64,8 @@ if(len(sys.argv) == 6 and (int(sys.argv[3]) < int(sys.argv[4]))):
 
     uso()
 
+print(Mensaje.titulo())
+
 if(len(sys.argv) == 6 and sys.argv[1] == '-c'):
 
     archivoFinal = sys.argv[2]
@@ -90,6 +94,8 @@ if(len(sys.argv) == 6 and sys.argv[1] == '-c'):
     llave = getpass.getpass("Ingresa una clave segura: ")
 
     criptograma, shares = shamir.encriptar(mensaje, N, K, llave)
+
+    Mensaje.mensajeEncriptado()
 
     print("Criptograma: "+criptograma)
 
