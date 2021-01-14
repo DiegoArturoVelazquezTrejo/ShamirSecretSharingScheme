@@ -66,7 +66,7 @@ class Encriptar_Shamir:
         aes = AESCipher()
         # Generamos la contraseña clave_segura
 
-        clave_segura = aes.sha256(llave)
+        clave_segura = aes.sha256_numerico(llave)
 
         # Generamos el polinomio
 
@@ -75,6 +75,10 @@ class Encriptar_Shamir:
         # Evaluamos en los N puntos
 
         diccionario_evaluaciones = {}
+
+        xs = []
+
+        ys = []
 
         for i in range(0, N):
 
@@ -88,19 +92,14 @@ class Encriptar_Shamir:
 
             diccionario_evaluaciones[x] = y
 
+            ys.append(y)
+
+            xs.append(x)
+
         # Encriptamos el menaje
 
-        criptograma = aes.encriptar(mensaje, llave)
+        criptograma = aes.encriptar(mensaje, str(clave_segura))
 
         # Regresamos el criptograma y los puntos (evaluacioness)
 
-        return (criptograma, diccionario_evaluaciones)
-
-
-mensaje = "Nos la va  apelar el siguiente semestre!"
-
-llave = "12345hola"
-
-enc = Encriptar_Shamir()
-
-enc.encriptar(mensaje, 10, 7, llave)
+        return (criptograma, xs, ys)

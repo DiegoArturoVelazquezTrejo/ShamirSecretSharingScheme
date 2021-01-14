@@ -64,13 +64,3 @@ polinomio_lagrange_cero = lagrangreP.lagrangeCero(xs, ys)
 
 if(polinomio_lagrange_cero == pol.eval(0)):
     print("Test Polinomio Interpolación .... 100%")
-
-'''
-
-import sys
-    if len(sys.argv) != 3:
-    sys.stderr.write("Usage: %s <integer> <modulus>\n" % sys.argv[0])
-    sys.exit(1)
-
-NUM, MOD = int(sys.argv[1]), int(sys.argv[2])
-'''

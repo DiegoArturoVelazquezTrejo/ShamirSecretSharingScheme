@@ -21,7 +21,7 @@ class AESCipher:
     '''
     def encriptar(self, data, key):
 
-        key = self.sha256(key)
+        key = self.sha256_alphanumerico(key)
 
         iv = get_random_bytes(AES.block_size)
 
@@ -37,18 +37,22 @@ class AESCipher:
     '''
     def desencriptar(self, data, key):
 
+        key = self.sha256_alphanumerico(key)
+
+        print(len(key))
+
         raw = b64decode(data)
 
         self.cipher = AES.new(key, AES.MODE_CBC, raw[:AES.block_size])
 
-        return unpad(self.cipher.desencriptar(raw[AES.block_size:]), AES.block_size)
+        return unpad(self.cipher.decrypt(raw[AES.block_size:]), AES.block_size)
 
     '''
     Método que genera un hash con base en una clave que el usuario proporciona.
     @param: llave
-    @return: hash generado con el algoritmo SHA256 y la llave.
+    @return: hash generado con el algoritmo SHA256 y la llave (numérico).
     '''
-    def sha256(self, key):
+    def sha256_numerico(self, key):
 
         clave_segura =  sha256(key.encode('utf8')).digest()
 
@@ -57,6 +61,14 @@ class AESCipher:
         valor=int(clave_segura.hex(),base=16)
 
         return valor
+    '''
+    Método que genera un hash con base en una clave que el usuario proporciona.
+    @param: llave
+    @return: hash generado con el algoritmo SHA256 y la llave (alfanumérico)
+    '''
+    def sha256_alphanumerico(self, key):
+
+        return  sha256(key.encode('utf8')).digest()
 
 
 ''' Algunas pruebas ...
