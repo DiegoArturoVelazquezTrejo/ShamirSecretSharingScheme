@@ -102,4 +102,4 @@ class Encriptar_Shamir:
 
         # Regresamos el criptograma y los puntos (evaluacioness)
 
-        return (criptograma, xs, ys)
+        return (criptograma, diccionario_evaluaciones)

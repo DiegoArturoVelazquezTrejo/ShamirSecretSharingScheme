@@ -56,3 +56,19 @@ for i in range(0, len(yif)):
     suma += yif[i]
 
 print(suma % p)
+
+
+mensaje = "El semestre nos la pela"
+llave = "mario12345hola"
+N = 20
+T = 14
+encshamir = Encriptar_Shamir()
+criptograma, xs, ys = encshamir.encriptar(mensaje, N, T, llave)
+desencrip = Desencriptar_Shamir()
+minimo_xs = []
+minimo_ys = []
+for i in range(0, 15):
+    minimo_xs.append(xs[i])
+    minimo_ys.append(ys[i])
+mensajeFinal = desencrip.desencriptar(criptograma, minimo_xs, minimo_ys)
+print(mensajeFinal)

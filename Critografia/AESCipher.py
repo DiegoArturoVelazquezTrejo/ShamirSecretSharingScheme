@@ -39,8 +39,6 @@ class AESCipher:
 
         key = self.sha256_alphanumerico(key)
 
-        print(len(key))
-
         raw = b64decode(data)
 
         self.cipher = AES.new(key, AES.MODE_CBC, raw[:AES.block_size])
