@@ -27,7 +27,7 @@ class AESCipher:
 
         self.cipher = AES.new(key, AES.MODE_CBC, iv)
 
-        return b64encode(iv + self.cipher.encriptar(pad(data.encode('utf-8'),AES.block_size))).decode('utf-8')
+        return b64encode(iv + self.cipher.encrypt(pad(data.encode('utf-8'),AES.block_size))).decode('utf-8')
 
     '''
     Método para desencriptar un mensaje utilizando el algoritmo AES.

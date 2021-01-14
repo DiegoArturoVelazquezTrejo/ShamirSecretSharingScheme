@@ -67,9 +67,11 @@ class Encriptar_Shamir:
         # Generamos la contraseña clave_segura
 
         clave_segura = aes.sha256(llave)
+
         # Generamos el polinomio
 
         polinomio = self.generar_polinomio_zp(clave_segura, K)
+
         # Evaluamos en los N puntos
 
         diccionario_evaluaciones = {}
@@ -88,7 +90,7 @@ class Encriptar_Shamir:
 
         # Encriptamos el menaje
 
-        criptograma = aes.encriptar(mensaje, clave_segura)
+        criptograma = aes.encriptar(mensaje, llave)
 
         # Regresamos el criptograma y los puntos (evaluacioness)
 
