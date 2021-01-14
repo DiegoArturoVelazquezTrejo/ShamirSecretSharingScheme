@@ -6,6 +6,8 @@ from CriptoAlgoritmos import Encriptar_Shamir
 from DesencriptoAlgoritmos import Desencriptar_Shamir
 # Biblioteca para manejar archivos
 from Archivos import Archivo
+# Biblioteca para solicitar la contraseña sin tener echo
+import getpass
 '''
     Para encriptar:
 
@@ -85,7 +87,7 @@ if(len(sys.argv) == 6 and sys.argv[1] == '-c'):
 
     # Pedimos la llave
 
-    llave = input("Ingresa una clave segura ... ")
+    llave = getpass.getpass("Ingresa una clave segura: ")
 
     criptograma, shares = shamir.encriptar(mensaje, N, K, llave)
 

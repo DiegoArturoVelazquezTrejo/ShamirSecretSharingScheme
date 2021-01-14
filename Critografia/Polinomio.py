@@ -2,6 +2,8 @@
 import random
 # Biblioteca para trabajar con operaciones matemáticas
 import math
+# Biblioteca para solicitar la contraseña sin tener echo
+import getpass
 '''
 Script ejemplo de manejo de polinomios en python
 Implementación de suma de polinomios y multiplicación de polinomios
