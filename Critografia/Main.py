@@ -64,7 +64,7 @@ if(len(sys.argv) == 6 and (int(sys.argv[3]) < int(sys.argv[4]))):
 
     uso()
 
-print(Mensaje.titulo())
+Mensaje.titulo()
 
 if(len(sys.argv) == 6 and sys.argv[1] == '-c'):
 
@@ -125,8 +125,14 @@ if(len(sys.argv) == 4 and sys.argv[1] == '-d'):
 
     xs, ys = Archivo.leer_archivo_num(archivoSeguro)
 
-    mensaje_final = shamirD.desencriptar(criptograma, xs, ys)
+    try:
 
-    print("\n\t\t\t################## MENSAJE DESENCRIPTADO ##################\n")
+        mensaje_final = shamirD.desencriptar(criptograma, xs, ys)
 
-    print(mensaje_final.decode("utf-8"))
+        print("\n\t\t\t################## MENSAJE DESENCRIPTADO ##################\n")
+
+        print(mensaje_final.decode("utf-8"))
+
+    except:
+
+        Mensaje.error()
