@@ -28,7 +28,14 @@ Mario Escobar Rosales (https://github.com/luismarioescobarrosales2000)
   4) Biblioteca Cypto.Cipher
   5) Biblioteca Cypto.Random
   6) Biblioteca Cypto.Util.Padding
-
+  
+  Lo anterior se resume a teclear en la consola: 
+  ```
+  $ pip install pycryptodome 
+  $ pip3 install pycryptodome
+  ```
+  Dependiendo la versión de pip. 
+  
 ### Para ejecutar el CIFRADO:
 ```
 $ python3 Main.py -c claves N K mensaje
