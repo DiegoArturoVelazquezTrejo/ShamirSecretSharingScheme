@@ -129,4 +129,4 @@ if(len(sys.argv) == 4 and sys.argv[1] == '-d'):
 
     print("\n\t\t\t################## MENSAJE DESENCRIPTADO ##################\n")
 
-    print(mensaje_final)
+    print(mensaje_final.decode("utf-8"))

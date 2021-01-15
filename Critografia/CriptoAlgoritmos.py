@@ -70,7 +70,7 @@ class Encriptar_Shamir:
 
         # Generamos el polinomio
 
-        polinomio = self.generar_polinomio_zp(clave_segura, K)
+        polinomio = self.generar_polinomio_zp(clave_segura, K-1)
 
         # Evaluamos en los N puntos
 
