@@ -33,6 +33,9 @@ Mario Escobar Rosales (https://github.com/luismarioescobarrosales2000)
   ```
   $ pip install pycryptodome 
   $ pip3 install pycryptodome
+
+  $ pip install pycrypto
+  $ pip3 install pycrypto
   ```
   Dependiendo la versión de pip. 
   
