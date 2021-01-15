@@ -59,7 +59,7 @@ mensaje que es el nombre de un archivo dentro de la misma carpeta que contiene e
 
   Se diseñó una biblioteca para trabajar con polinomios ya que el esquema de Shamir hace uso del espacio vectorial de polinomios.
   También se implementó una clase para trabajar con los Polinomios de Interpolación de Lagrange ya que cuando se generan los shares para los participantes,
-  estas son de la forma (X, P(X)), donde P(X) es un polinomio aleatorio que se genera cuando se encripta la información. El grado del polinomio es K, de ahí resulta
+  estas son de la forma (X, P(X)), donde P(X) es un polinomio aleatorio que se genera cuando se encripta la información. El grado del polinomio es K-1, de ahí resulta
   que se requieren al menos K participantes para recontruir el polinomio. Una vez que se recontruyó el polinomio, la evaluación en 0 implica que obtenemos el término independiente que
   coincide con la clave de hasheo que el sistema utilizó para encriptar la información.
 
