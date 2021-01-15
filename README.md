@@ -47,7 +47,7 @@ mensaje que es el nombre de un archivo dentro de la misma carpeta que contiene l
 ```
 ### Para ejecutar el DESENCRIPTADO:
 ```
-$ python3 Main.py -p claves mensaje
+$ python3 Main.py -d claves mensaje
 
 Donde claves es el archivo donde están guardadas las claves  
 mensaje que es el nombre de un archivo dentro de la misma carpeta que contiene el criptograma.
