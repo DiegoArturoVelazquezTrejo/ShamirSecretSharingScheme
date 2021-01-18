@@ -1,5 +1,8 @@
 # Biblioteca para verificar la existencia de archivos
 import os.path
+
+# Biblioteca para trabajar con el sistema
+import sys
 '''
 Clase para trabajar con archivos
 '''
@@ -75,23 +78,31 @@ class Archivo:
     '''
     @staticmethod
     def leer_archivo_num(nombre):
-        a = []
 
-        b = []
+        try:
+            a = []
 
-        f = open(nombre, "r")
+            b = []
 
-        for x in f:
+            f = open(nombre, "r")
 
-            renglon = x.split()
+            for x in f:
 
-            a.append(int(renglon[0]))
+                renglon = x.split()
 
-            b.append(int(renglon[1]))
+                a.append(int(renglon[0]))
 
-        f.close()
+                b.append(int(renglon[1]))
 
-        return a, b
+            f.close()
+
+            return a, b
+
+        except:
+
+            print("Se ha generado un error leyendo el archivo seguro. ")
+
+            sys.exit(1)
 
     # Método para verificar la existencia del archivo:
     '''
