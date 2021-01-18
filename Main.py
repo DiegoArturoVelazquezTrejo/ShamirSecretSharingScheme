@@ -103,9 +103,15 @@ if(len(sys.argv) == 6 and sys.argv[1] == '-c'):
 
     # Guardamos en el archivo las xs y ys
 
+    archivoFinal = archivoFinal.split(".")[0]+".frg"
+
     Archivo.escribir_archivo(archivoFinal, shares)
 
-    Archivo.sobreescribir_archivo(sys.argv[5], criptograma)
+    archivoFinal = sys.argv[5].split(".")[0]
+
+    archivoFinal+= ".aes"
+
+    Archivo.sobreescribir_archivo(archivoFinal, criptograma)
 
 if(len(sys.argv) == 4 and sys.argv[1] == '-d'):
 
