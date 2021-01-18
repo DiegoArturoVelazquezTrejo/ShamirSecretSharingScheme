@@ -16,17 +16,26 @@ class Archivo:
     @staticmethod
     def leer_archivo(nombre):
 
-        f = open(nombre, "r")
+        try:
 
-        mensaje = ""
+            f = open(nombre, "r")
 
-        for x in f:
+            mensaje = ""
 
-            mensaje += x
+            for x in f:
 
-        f.close()
+                mensaje += x
 
-        return mensaje
+            f.close()
+
+            return mensaje
+
+        except:
+
+            print("Se ha generado un error leyendo "+nombre)
+
+            sys.exit(1)
+
     # Método para escribir en un archivo
     '''
     @param: Nombre del archivo
@@ -63,13 +72,21 @@ class Archivo:
     @staticmethod
     def sobreescribir_archivo(nombre, contenido):
 
-        f = open(nombre, 'w')
+        try:
 
-        print("Sobrescribiendo en archivo ... ")
+            f = open(nombre, 'w')
 
-        f.write(contenido)
+            print("Sobrescribiendo en archivo ... ")
 
-        f.close()
+            f.write(contenido)
+
+            f.close()
+
+        except:
+
+            print("Se ha generado un error sobreescribiendo en "+nombre)
+
+            sys.exit(1)
 
     # Método para leer archivos numéricos generados a partir de un diccionario
     '''
