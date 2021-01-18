@@ -73,5 +73,4 @@ mensaje que es el nombre de un archivo dentro de la misma carpeta que contiene e
  ```
  $ python3 NombreDeLaPruebaUnitaria.py
 
- (Se tienen que mover a la carpeta arriba con nombre: Criptografia)
  ```
