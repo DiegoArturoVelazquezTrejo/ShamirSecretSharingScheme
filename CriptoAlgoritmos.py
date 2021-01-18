@@ -42,11 +42,13 @@ class Encriptar_Shamir:
 
         for i in range(0, grado):
 
-            coeficientes.append(self.zp.random_zp(grado))
+            coeficientes.append(self.zp.random_zp(self.campo_zp_primo))
 
         # Definimos el polinomio
 
         pol = Polinomio(grado, True, coeficientes)
+
+        #print(pol.toString())
 
         # Regresamos el polinomio
 
