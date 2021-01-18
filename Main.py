@@ -10,6 +10,8 @@ from Archivos import Archivo
 import getpass
 # Biblioteca para ilustrar
 from Mensajes import Mensaje
+# Biblioteca para trabajar con el sistema operativo
+import os 
 '''
     Para encriptar:
 
@@ -112,6 +114,8 @@ if(len(sys.argv) == 6 and sys.argv[1] == '-c'):
     archivoFinal+= ".aes"
 
     Archivo.sobreescribir_archivo(archivoFinal, criptograma)
+
+    os.remove(sys.argv[5])
 
 if(len(sys.argv) == 4 and sys.argv[1] == '-d'):
 
