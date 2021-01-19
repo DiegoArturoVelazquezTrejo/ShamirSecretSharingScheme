@@ -11,7 +11,7 @@ import getpass
 # Biblioteca para ilustrar
 from Mensajes import Mensaje
 # Biblioteca para trabajar con el sistema operativo
-import os 
+import os
 '''
     Para encriptar:
 
@@ -131,7 +131,7 @@ if(len(sys.argv) == 4 and sys.argv[1] == '-d'):
 
         sys.exit(1)
 
-    criptograma = Archivo.leer_archivo(criptograma)
+    criptograma = Archivo.leer_archivo_normal(criptograma)
 
     xs, ys = Archivo.leer_archivo_num(archivoSeguro)
 

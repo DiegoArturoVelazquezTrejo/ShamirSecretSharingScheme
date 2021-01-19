@@ -3,18 +3,82 @@ import os.path
 
 # Biblioteca para trabajar con el sistema
 import sys
+
+# Biblioteca para trabajar con archivos .doc #  pip3 install python-docx
+import docx
+
+# Biblioteca para trabajar con archivos PDF # pip3 install PyPDF2
+import PyPDF2
+
 '''
 Clase para trabajar con archivos
 '''
 class Archivo:
+
+    #Método para leer archivos con terminación .doc
+    '''
+    @param: Nombre del archivo
+    @return: Contenido del archivo
+    '''
+    def leer_doc(nombre):
+
+        try:
+
+            doc = docx.Document(nombre)
+
+            all_paras = doc.paragraphs
+
+            mensaje = ""
+
+            for para in all_paras:
+
+                mensaje += para.text + "\n"
+
+            return mensaje
+
+        except:
+
+            print("Se ha generado un error leyendo "+nombre)
+
+            sys.exit(1)
+
+    # Método para leer archivos con terminación .pdf
+    '''
+    @param: Nombre del archivo
+    @return: Contenido del archivo
+    '''
+    def leer_pdf(nombre):
+
+        try:
+
+            pdfFileObj = open(nombre, 'rb')
+
+            pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+
+            texto = ""
+
+            for i in range(0, pdfReader.numPages):
+
+                pageObj = pdfReader.getPage(0)
+
+                texto += pageObj.extractText()+"\n"
+
+            print(texto)
+
+            return texto
+
+        except:
+
+            print("Se ha generado un error leyendo "+nombre)
+
+            sys.exit(1)
 
     # Método para leer de un archivo
     '''
     @param: Nombre del archivo
     @return: Contenido del archivo
     '''
-    @staticmethod
-    def leer_archivo(nombre):
+    def leer_archivo_normal(nombre):
 
         try:
 
@@ -130,3 +194,45 @@ class Archivo:
     def verifica_existencia(nombre):
 
         return os.path.isfile(nombre)
+
+    # Método para leer de un archivo
+    '''
+    @param: Nombre del archivo
+    @return: Contenido del archivo
+    '''
+    @staticmethod
+    def leer_archivo(nombre):
+
+        # Vamos a ver el tipo de extensión del archivo
+
+        terminacion = nombre.split(".")[1].lower()
+
+        if(terminacion == "docx" or terminacion == "doc"):
+
+            return Archivo.leer_doc(nombre)
+
+        elif(terminacion == "pdf"):
+
+            return Archivo.leer_pdf(nombre)
+
+        else:
+
+            try:
+
+                f = open(nombre, "r")
+
+                mensaje = ""
+
+                for x in f:
+
+                    mensaje += x
+
+                f.close()
+
+                return mensaje
+
+            except:
+
+                print("Se ha generado un error leyendo "+nombre)
+
+                sys.exit(1)
