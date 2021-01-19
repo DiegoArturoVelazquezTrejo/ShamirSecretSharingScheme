@@ -63,8 +63,6 @@ class Archivo:
 
                 texto += pageObj.extractText()+"\n"
 
-            print(texto)
-
             return texto
 
         except:
