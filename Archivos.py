@@ -24,6 +24,8 @@ class Archivo:
     '''
     def leer_doc(nombre):
 
+        print("Leyendo documento ... \n")
+
         try:
 
             doc = docx.Document(nombre)
@@ -51,6 +53,8 @@ class Archivo:
     '''
     def leer_pdf(nombre):
 
+        print("Leyendo documento ... \n")
+
         try:
 
             texto = textract.process(nombre, method='pdfminer')
@@ -69,6 +73,8 @@ class Archivo:
     @return: Contenido del archivo
     '''
     def leer_archivo_normal(nombre):
+
+        print("Leyendo documento ... \n")
 
         try:
 
@@ -248,7 +254,7 @@ class Archivo:
 
             pdf.set_font('Arial', 'B', 12)
 
-            pdf.cell(40, 10, contenido)
+            pdf.multi_cell(160, 10, contenido)
 
             nombre = nombre_archivo+".pdf"
 
