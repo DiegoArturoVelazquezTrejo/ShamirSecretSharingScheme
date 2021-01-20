@@ -87,7 +87,7 @@ if(len(sys.argv) == 6 and sys.argv[1] == '-c'):
 
     # Leemos el mensaje del archivo
 
-    terminacion = mensaje.split(".")[1] + "\n"
+    terminacion = Archivo.extension_archivo(mensaje) + "\n"
 
     mensaje = terminacion + Archivo.leer_archivo(mensaje)
 
@@ -163,9 +163,9 @@ if(len(sys.argv) == 4 and sys.argv[1] == '-d'):
 
                 terminacion += mensaje[i]
 
-        Archivo.generarArchivo(mensaje[indice:], sys.argv[3].split(".")[0]+"."+terminacion)
+        Archivo.generarArchivo(mensaje[indice+1:], sys.argv[3].split(".")[0], terminacion)
 
-        print(mensaje[indice:])
+        print("Mensaje: \n"+mensaje[indice:])
 
     except:
 

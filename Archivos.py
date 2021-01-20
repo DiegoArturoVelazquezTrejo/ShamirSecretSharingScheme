@@ -8,7 +8,8 @@ import sys
 import docx
 
 # Biblioteca para trabajar con archivos PDF # pip3 install PyPDF2
-import PyPDF2
+import pdfkit    # pip3 install pdfkit
+# import PyPDF2
 
 '''
 Clase para trabajar con archivos
@@ -239,10 +240,49 @@ class Archivo:
     '''
     @param: Mensaje que se guardará en el archivo
     @param: Nombre del archivo con extensión
+    @param: Extensión del archivo
     '''
     @staticmethod
-    def generarArchivo(contenido, nombre_archivo):
+    def generarArchivo(contenido, nombre_archivo, extension):
 
-        # Tenemos que ver qué tipo de extensión es y con base en eso generamos el archivo 
+        extension = extension.lower()
 
-        print(nombre_archivo)
+        # Tenemos que ver qué tipo de extensión es y con base en eso generamos el archivo
+
+        if(extension == "txt"):
+
+            f = open(nombre_archivo+"."+extension, "a")
+
+            f.write(contenido)
+
+            f.close()
+
+
+    # Método para identificar la extensión de un archivo
+    '''
+    @param: Nombre del archivo
+    '''
+    @staticmethod
+    def extension_archivo(nombre_archivo):
+        #Buscar (".") si no esta entonces extension=".txt"(por default)
+        busqueda=nombre_archivo.find(".")
+
+        if busqueda == -1 :
+
+            return ".txt"
+
+        else :
+
+            try:
+
+                partes_nombre_archivo=nombre_archivo.split('.')
+
+                extension=partes_nombre_archivo[-1]
+
+                return extension
+
+            except:
+
+                print("Error en busqueda de extensión del archivo. ")
+
+                sys.exit(1)
