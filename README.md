@@ -28,15 +28,23 @@ Mario Escobar Rosales (https://github.com/luismarioescobarrosales2000)
   4) Biblioteca Cypto.Cipher
   5) Biblioteca Cypto.Random
   6) Biblioteca Cypto.Util.Padding
-  
-  Lo anterior se resume a teclear en la consola: 
+  7) Biblioteca docx
+  8) Biblioteca PyPDF2
+
+  Lo anterior se resume a teclear en la consola:
   ```
-  $ pip install pycryptodome 
+  $ pip install pycryptodome
   $ pip3 install pycryptodome
 
+  $ pip install docx
+  $ pip3 install docx
+
+  $ pip install PyPDF2
+  $ pip3 install PyPDF2
+
   ```
-  Dependiendo la versión de pip. 
-  
+  Dependiendo la versión de pip.
+
 ### Para ejecutar el CIFRADO:
 ```
 $ python3 Main.py -c claves N K mensaje
@@ -57,17 +65,17 @@ mensaje que es el nombre de un archivo dentro de la misma carpeta que contiene e
 
 ### Observaciones y proceso de análisis:
 
-  Se diseñó una biblioteca para trabajar con polinomios (contiene operaciones de suma, producto por escalar, producto por polinomio y evaluación) ya que el esquema de Shamir hace uso del espacio vectorial de polinomios. Cabe mencionar, que esta biblioteca se puede usar con otros fines (no se limita a este proyecto). 
+  Se diseñó una biblioteca para trabajar con polinomios (contiene operaciones de suma, producto por escalar, producto por polinomio y evaluación) ya que el esquema de Shamir hace uso del espacio vectorial de polinomios. Cabe mencionar, que esta biblioteca se puede usar con otros fines (no se limita a este proyecto).
   También se implementó una clase para trabajar con los Polinomios de Interpolación de Lagrange ya que cuando se generan los shares para los participantes,
   estas son de la forma (X, P(X)), donde P(X) es un polinomio aleatorio que se genera cuando se encripta la información. El grado del polinomio es K-1, de ahí resulta
-  que se requieren al menos K participantes para recontruir el polinomio. El arhivo Lagrange.py es un archivo que realiza una interpolación de polinomios sin evaluar en el punto cero, por lo que también puede ser utilizada como biblioteca para otros fines ajenos a los de este proyecto. 
-  
+  que se requieren al menos K participantes para recontruir el polinomio. El arhivo Lagrange.py es un archivo que realiza una interpolación de polinomios sin evaluar en el punto cero, por lo que también puede ser utilizada como biblioteca para otros fines ajenos a los de este proyecto.
+
   Una vez que se recontruyó el polinomio, la evaluación en 0 implica que obtenemos el término independiente que
   coincide con la clave de hasheo que el sistema utilizó para encriptar la información.
 
   También se diseñó una clase Zp ya que toda operación que el sistema realiza está cerrada bajo Zp donde p es un primo muy grande. Esto con la finalidad de deshacernos de las fracciones
   en el polinomio de interpolación y de trabajar con los números reales, perdiendo presición. Como Zp tiene a p primo, todos los elementos van a tener inverso multiplicativo, y así eliminamos el
-  trabajo con números de punto flotante o doubles y trabajamos con puros números enteros. 
+  trabajo con números de punto flotante o doubles y trabajamos con puros números enteros.
 
 ### Para ejecutar pruebas unitarias:
  ```
