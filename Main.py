@@ -163,9 +163,15 @@ if(len(sys.argv) == 4 and sys.argv[1] == '-d'):
 
                 terminacion += mensaje[i]
 
-        Archivo.generarArchivo(mensaje[indice+1:], sys.argv[3].split(".")[0], terminacion)
-
         print("Mensaje: \n"+mensaje[indice:])
+
+        try:
+
+            Archivo.generarArchivo(mensaje[indice+1:], sys.argv[3].split(".")[0], terminacion)
+
+        except:
+
+            print("Se generó un error escribiendo en el archivo dada la codificación del archivo previo ...")
 
     except:
 
