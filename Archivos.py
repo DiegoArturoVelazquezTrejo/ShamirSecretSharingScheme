@@ -6,10 +6,11 @@ import sys
 
 # Biblioteca para trabajar con archivos .doc #  pip3 install python-docx
 import docx
+from docx import Document
 
-# Biblioteca para trabajar con archivos PDF # pip3 install PyPDF2
-import pdfkit    # pip3 install pdfkit
-import PyPDF2
+# Biblioteca para trabajar con archivos PDF
+import textract
+from fpdf import FPDF
 
 '''
 Clase para trabajar con archivos
@@ -52,19 +53,9 @@ class Archivo:
 
         try:
 
-            pdfFileObj = open(nombre, 'rb')
+            texto = textract.process(nombre, method='pdfminer')
 
-            pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
-
-            texto = ""
-
-            for i in range(0, pdfReader.numPages):
-
-                pageObj = pdfReader.getPage(0)
-
-                texto += pageObj.extractText()+"\n"
-
-            return texto
+            return texto.decode("utf-8")
 
         except:
 
@@ -249,7 +240,29 @@ class Archivo:
 
         # Tenemos que ver qué tipo de extensión es y con base en eso generamos el archivo
 
-        if(extension == "txt"):
+        if(extension == "pdf"):
+
+            pdf = FPDF()
+
+            pdf.add_page()
+
+            pdf.set_font('Arial', 'B', 12)
+
+            pdf.cell(40, 10, contenido)
+
+            nombre = nombre_archivo+".pdf"
+
+            pdf.output(nombre, 'F')
+
+        elif(extension == "doc" or extension == "docx"):
+
+            document = Document()
+
+            p = document.add_paragraph(contenido)
+
+            document.save(nombre_archivo+"."+extension)
+
+        else:
 
             f = open(nombre_archivo+"."+extension, "a")
 

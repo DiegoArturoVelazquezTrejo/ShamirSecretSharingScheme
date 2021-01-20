@@ -29,7 +29,8 @@ Mario Escobar Rosales (https://github.com/luismarioescobarrosales2000)
   5) Biblioteca Cypto.Random
   6) Biblioteca Cypto.Util.Padding
   7) Biblioteca docx
-  8) Biblioteca PyPDF2
+  8) Biblioteca textract
+  9) Biblioteca fpdf
 
   Lo anterior se resume a teclear en la consola:
   ```
@@ -39,8 +40,11 @@ Mario Escobar Rosales (https://github.com/luismarioescobarrosales2000)
   $ pip install docx
   $ pip3 install docx
 
-  $ pip install PyPDF2
-  $ pip3 install PyPDF2
+  $ pip install textract
+  $ pip3 install textract
+
+  $ pip install fpdf
+  $ pip3 install fpdf
 
   ```
   Dependiendo la versión de pip.
