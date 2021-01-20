@@ -9,7 +9,7 @@ import docx
 
 # Biblioteca para trabajar con archivos PDF # pip3 install PyPDF2
 import pdfkit    # pip3 install pdfkit
-# import PyPDF2
+import PyPDF2
 
 '''
 Clase para trabajar con archivos
