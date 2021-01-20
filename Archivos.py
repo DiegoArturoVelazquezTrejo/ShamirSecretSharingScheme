@@ -234,3 +234,15 @@ class Archivo:
                 print("Se ha generado un error leyendo "+nombre)
 
                 sys.exit(1)
+
+    # Método para generar un archivo dada la extensión
+    '''
+    @param: Mensaje que se guardará en el archivo
+    @param: Nombre del archivo con extensión
+    '''
+    @staticmethod
+    def generarArchivo(contenido, nombre_archivo):
+
+        # Tenemos que ver qué tipo de extensión es y con base en eso generamos el archivo 
+
+        print(nombre_archivo)

@@ -87,7 +87,9 @@ if(len(sys.argv) == 6 and sys.argv[1] == '-c'):
 
     # Leemos el mensaje del archivo
 
-    mensaje = Archivo.leer_archivo(mensaje)
+    terminacion = mensaje.split(".")[1] + "\n"
+
+    mensaje = terminacion + Archivo.leer_archivo(mensaje)
 
     shamir = Encriptar_Shamir()
 
@@ -141,7 +143,29 @@ if(len(sys.argv) == 4 and sys.argv[1] == '-d'):
 
         print("\n\t\t\t################## MENSAJE DESENCRIPTADO ##################\n")
 
-        print(mensaje_final.decode("utf-8"))
+        mensaje = mensaje_final.decode("utf-8")
+
+        # Vamos a obtener la extensión del archivo con el que inicialmente fue encriptado
+
+        terminacion = ""
+
+        indice = 0
+
+        for i in range(0, len(mensaje)):
+
+            if(mensaje[i] == '\n'):
+
+                break
+
+            else:
+
+                indice += 1
+
+                terminacion += mensaje[i]
+
+        Archivo.generarArchivo(mensaje[indice:], sys.argv[3].split(".")[0]+"."+terminacion)
+
+        print(mensaje[indice:])
 
     except:
 

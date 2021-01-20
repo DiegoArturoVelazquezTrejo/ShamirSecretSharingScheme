@@ -13,6 +13,9 @@ import random
 # Biblioteca para trabajar con el sistema
 import sys
 
+# Biblioteca para trabajar con el SO
+import os
+
 '''
 Pruebas unitarias para el esquema de encriptado Shamir
 '''
@@ -23,7 +26,7 @@ clave_usuario = "dfghjdbfubbfwrby6736bbsi"
 
 # Necesitamos el documento de menensaje.txt para realizar esta prueba
 
-mensaje = "mensaje.txt"
+mensaje = "./Test/mensaje.txt"
 
 mensajeT = Archivo.leer_archivo(mensaje)
 
@@ -143,3 +146,5 @@ for i in range(0, 100):
         print("Test desencriptando con menos de K contraseñas ...  100% ")
 
         Archivo.sobreescribir_archivo(mensaje, mensaje_inicial.decode("utf-8"))
+
+os.remove("claves.txt")
